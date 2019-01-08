@@ -1,61 +1,51 @@
-//gd1 ex1
-//jim worker take the flightdetails using an array
+//gd week1 ex2
+//Calculating the number of distinction holders and number of failed students by using Arrays of Functions.
+//student details given in structure
+
 #include <iostream>
 using namespace std;
-   class flightdetails
-   {
-     char flightnum[10];
-     char dest[20];
-     char date[8];
-   public:
-     void f_accept()
-     {
-        cout<<"Enter the flight number:";
-        cin>>flightnum;
-        cout<<"Enter the destination:";
-        cin>>dest;
-        cout<<"Enter the date:";
-        cin>>date;
-     }
-     void f_display()
-     {
-       cout<<"Flight Number:"<<flightnum<<endl;
-       cout<<"Destination:"<<dest<<endl;
-       cout<<"Date:"<<date<<endl;
-     }
-   };
-   class passengerdetails
-   {
-     char fname[15];
-     char lname[20];
-     int age;
-     char sex;
-   public:
-     void p_accept()
-     {
-       cout<<"Enter your first name: ";
-       cin>>fname;
-       cout<<"Enter your last name: ";
-       cin>>lname;
-       cout<<"Enter your age: ";
-       cin>>age;
-       cout<<"Enter your sex(m/f): ";
-       cin>>sex;
-     }
-     void p_display()
-     {
-       cout<<"First name:"<<fname<<endl;
-       cout<<"Last name:"<<lname<<endl;
-       cout<<"Age:"<<age<<endl;
-       cout<<"Sex:"<<sex<<endl;
-     }
-   };
-   int main()
-   {
-    flightdetails F1;
-    F1.f_accept();
-    passengerdetails P1;
-    P1.p_accept();
-    F1.f_display();
-    P1.p_display();
-   }
+
+struct studentresult
+{
+float Phy_Marks, Chem_Marks, Maths_Marks;
+}studentarray[50];
+
+
+void student(int size)
+{
+float average;
+int nstud_dist=0,nstud_fail=0;
+for(int i=0;i<size;i++)
+{
+//finding average
+average =(studentarray[i].Phy_Marks+ studentarray[i].Chem_Marks+ studentarray[i].Maths_Marks)/3;
+if (average>=70) 
+nstud_dist++;
+else if (average < 35) 
+nstud_fail++;
+}
+cout<<endl<<"Number of students who are distinction holders: "<<nstud_dist;
+cout<<endl<<"Number of students who have failed: "<<nstud_fail;
+}
+int main()
+{
+int count;
+cout<<"Enter the number of students:";
+cin>>count;
+for (int i=0;i<count;i++)
+{
+cout<<"\n Enter the details of "<<i+1<<" student";
+cout<<"\nMarks in Physics: ";
+cin>>studentarray[i].Phy_Marks;
+cout<<"\nMarks in Chemistry: ";
+cin>>studentarray[i].Chem_Marks;
+cout<<"\nMarks in Math: ";
+cin>>studentarray[i].Maths_Marks;
+}
+student(count);
+return 0;
+}
+
+
+
+
